@@ -49,7 +49,7 @@ app.get("/mp4", async (req, res) => {
     );
 
     ytdl(url, {
-        quality: "highestvideo",
+        quality: "highest",
         format: "mp4",
     }).pipe(res);
 });
