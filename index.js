@@ -8,7 +8,9 @@ app.use(cors());
 app.get("/", (req, res) => {
     const ping = new Date();
     ping.setHours(ping.getHours() - 3);
-    console.log(`Ping at: ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
+    console.log(
+        `Ping at: ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`
+    );
     res.sendStatus(200);
 });
 
@@ -33,7 +35,7 @@ app.get("/mp3", async (req, res) => {
         `attachment; filename="${videoName}.mp3"`
     );
 
-    ytdl(url, { format: "mp3" }).pipe(res);
+    ytdl(url, { quality: "highestaudio", format: "mp3" }).pipe(res);
 });
 
 app.get("/mp4", async (req, res) => {
@@ -46,7 +48,10 @@ app.get("/mp4", async (req, res) => {
         `attachment; filename="${videoName}.mp4"`
     );
 
-    ytdl(url, { format: "mp4" }).pipe(res);
+    ytdl(url, {
+        quality: "highestvideo",
+        format: "mp4",
+    }).pipe(res);
 });
 
 app.listen(process.env.PORT || 3500, () => {
