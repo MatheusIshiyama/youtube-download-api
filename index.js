@@ -17,41 +17,71 @@ app.get("/", (req, res) => {
 app.get("/info", async (req, res) => {
     const { url } = req.query;
 
-    const info = (await ytdl.getInfo(url)).videoDetails;
+    if (url) {
+        const isValid = ytdl.validateURL(url);
 
-    const title = info.title;
-    const thumbnail = info.thumbnails[2].url;
+        if (isValid) {
+            const info = (await ytdl.getInfo(url)).videoDetails;
 
-    res.send({ title: title, thumbnail: thumbnail });
+            const title = info.title;
+            const thumbnail = info.thumbnails[2].url;
+
+            res.send({ title: title, thumbnail: thumbnail });
+        } else {
+            res.status(400).send("Invalid url");
+        }
+    } else {
+        res.status(400).send("Invalid query");
+    }
 });
 
 app.get("/mp3", async (req, res) => {
     const { url } = req.query;
 
-    const videoName = (await ytdl.getInfo(url)).videoDetails.title;
+    if (url) {
+        const isValid = ytdl.validateURL(url);
 
-    res.header(
-        "Content-Disposition",
-        `attachment; filename="${videoName}.mp3"`
-    );
+        if (isValid) {
+            const videoName = (await ytdl.getInfo(url)).videoDetails.title;
 
-    ytdl(url, { quality: "highestaudio", format: "mp3" }).pipe(res);
+            res.header(
+                "Content-Disposition",
+                `attachment; filename="${videoName}.mp3"`
+            );
+
+            ytdl(url, { quality: "highestaudio", format: "mp3" }).pipe(res);
+        } else {
+            res.status(400).send("Invalid url");
+        }
+    } else {
+        res.status(400).send("Invalid query");
+    }
 });
 
 app.get("/mp4", async (req, res) => {
     const { url } = req.query;
 
-    const videoName = (await ytdl.getInfo(url)).videoDetails.title;
+    if (url) {
+        const isValid = ytdl.validateURL(url);
 
-    res.header(
-        "Content-Disposition",
-        `attachment; filename="${videoName}.mp4"`
-    );
+        if (isValid) {
+            const videoName = (await ytdl.getInfo(url)).videoDetails.title;
 
-    ytdl(url, {
-        quality: "highest",
-        format: "mp4",
-    }).pipe(res);
+            res.header(
+                "Content-Disposition",
+                `attachment; filename="${videoName}.mp4"`
+            );
+
+            ytdl(url, {
+                quality: "highest",
+                format: "mp4",
+            }).pipe(res);
+        } else {
+            res.status(400).send("Invalid url");
+        }
+    } else {
+        res.status(400).send("Invalid query");
+    }
 });
 
 app.listen(process.env.PORT || 3500, () => {
