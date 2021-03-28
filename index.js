@@ -44,11 +44,11 @@ app.get("/mp3", async (req, res) => {
         if (isValid) {
             const videoName = (await ytdl.getInfo(url)).videoDetails.title;
 
-            res.setHeader(
+            res.header(
                 "Content-Disposition",
                 `attachment; filename="${videoName}.mp3"`
             );
-            res.setHeader("Content-type", "audio/mpeg3");
+            res.header("Content-type", "audio/mpeg3");
 
             ytdl(url, { quality: "highestaudio", format: "mp3" }).pipe(res);
         } else {
