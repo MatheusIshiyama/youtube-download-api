@@ -16,6 +16,8 @@ REST API to download `.mp3` and `.mp4` files.
 [Download .mp3](####`get`-download-`.mp3`-file) |
 [Download .mp4](####`get`-download-`.mp4`-file)
 
+---
+
 #### `GET` Video Info
 
 **endpoint:** `BaseURL/info/?url=value`
@@ -33,6 +35,8 @@ REST API to download `.mp3` and `.mp4` files.
 }
 ```
 
+---
+
 #### `GET` Download `.mp3` file
 
 **endpoint:** `BaseURL/mp3/?url=value`
@@ -44,6 +48,8 @@ REST API to download `.mp3` and `.mp4` files.
 **Response:**
 
 `<video-name>.mp3` file
+
+---
 
 #### `GET` Download `.mp4` file
 
