@@ -13,8 +13,8 @@ REST API to download `.mp3` and `.mp4` files.
 ### Methods:
 
 [Video Info](#get-video-info) |
-[Download .mp3](#get-download-.mp3-file) |
-[Download .mp4](#get-download-.mp4-file)
+[Download .mp3](#get-download-mp3-file) |
+[Download .mp4](#get-download-mp4-file)
 
 ---
 
@@ -37,7 +37,7 @@ REST API to download `.mp3` and `.mp4` files.
 
 ---
 
-#### `GET` Download `.mp3` file
+#### `GET` Download `mp3` file
 
 **endpoint:** `BaseURL/mp3/?url=value`
 
@@ -51,7 +51,7 @@ REST API to download `.mp3` and `.mp4` files.
 
 ---
 
-#### `GET` Download `.mp4` file
+#### `GET` Download `mp4` file
 
 **endpoint:** `BaseURL/mp4/?url=value`
 
